@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import Alerta from './Alerta';
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   // Aplicamos el estado
   // ESTADO - INPUTS
   const [nombre, setNombre] = useState('');
@@ -21,8 +22,21 @@ const Formulario = () => {
       setError(true);
       return;
     }
-
+    // No hubo ningun error
     setError(false);
+    // Objeto de Paciente
+    const paciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas
+    }
+    // Toma una copia del arreglo de pacientes y la reescribe con lo que hay en paciente
+    setPacientes([...pacientes, paciente]);
+
+    // Reiniciar el formulario
+    setNombre(''), setPropietario(''), setEmail(''), setFecha(''), setSintomas('');
   }
 
   return (
@@ -37,9 +51,9 @@ const Formulario = () => {
         {/* Formulario */}
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 mx-5 md:mx-0">
             { error && (
-              <div className='bg-red-700 text-white text-center p-3 uppercase font-bold mb-3 rounded-md'>
-                <p>Todos los campos son obligatorios</p>
-              </div>
+              <Alerta
+                mensaje={'Todos los campos son obligatorios'}  
+              />
             )}
             {/* Mascota */}
             <div className="mb-5">
