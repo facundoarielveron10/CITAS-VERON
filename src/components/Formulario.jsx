@@ -65,6 +65,9 @@ const Formulario = () => {
                 placeholder="Describe los Sintomas"
               />
             </div>
+            <div>
+              <h1>Hola</h1>
+            </div>
             {/* Boton Enviar */}
             <input 
               type="submit" 
