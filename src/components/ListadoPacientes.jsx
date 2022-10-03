@@ -3,7 +3,7 @@ import { Paciente } from "./Paciente"
 const ListadoPacientes = () => {
   return (
     // Contenedor del Listado
-    <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
+    <div className="md:w-1/2 lg:w-3/5 md:h-screen md:overflow-y-scroll">
         {/* Titulos */}
         <h2 className="font-black text-3xl text-center">Listado Pacientes</h2>
         <p className="text-xl mt-5 mb-10 text-center">Administras tus {''}
