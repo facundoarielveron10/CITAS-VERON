@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Alerta from './Alerta';
+import Error from './Error';
 
 const Formulario = ({ pacientes, setPacientes }) => {
   // Aplicamos el estado
@@ -12,6 +12,14 @@ const Formulario = ({ pacientes, setPacientes }) => {
   
   // ESTADO - ALERTAS
   const [error, setError] = useState(false);
+
+  // Genera un id unico
+  const generarId = () => {
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString(36);
+
+    return random + fecha;
+  }
   
   // Envio de Formulario
   const handleSubmit = (e) => {
@@ -30,7 +38,8 @@ const Formulario = ({ pacientes, setPacientes }) => {
       propietario,
       email,
       fecha,
-      sintomas
+      sintomas,
+      id: generarId()
     }
     // Toma una copia del arreglo de pacientes y la reescribe con lo que hay en paciente
     setPacientes([...pacientes, paciente]);
@@ -51,10 +60,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
         {/* Formulario */}
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 mx-5 md:mx-0">
             { error && (
-              <Alerta
-                tipo={'error'}
-                mensaje={'Todos los campos son obligatorios'}  
-              />
+              <Error><p>Todos los campos son obligatorios</p></Error>
             )}
             {/* Mascota */}
             <div className="mb-5">
