@@ -1,6 +1,7 @@
+import { useEffect } from "react"
 import { Paciente } from "./Paciente"
 
-const ListadoPacientes = ({pacientes}) => {
+const ListadoPacientes = ({pacientes, setPaciente}) => {
   return (
     // Contenedor del Listado
     <div className="md:w-1/2 lg:w-3/5 md:h-screen md:overflow-y-scroll">
@@ -20,6 +21,7 @@ const ListadoPacientes = ({pacientes}) => {
                 <Paciente
                   key={paciente.id}
                   paciente={paciente}
+                  setPaciente={setPaciente}
                 />
             ))}
           </>
