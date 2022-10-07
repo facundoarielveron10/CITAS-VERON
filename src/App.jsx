@@ -10,9 +10,11 @@ function App() {
 
   // EFECTO - PACIENTES
   useEffect(() => {
-    console.log(pacientes);
     const obtenerLS = () => {
       const pacientesLS = JSON.parse(localStorage.getItem('pacientes'));
+      if (pacientesLS === null) {
+        localStorage.setItem('pacientes', JSON.stringify([]));
+      }
       setPacientes(pacientesLS);
     }
     obtenerLS();
