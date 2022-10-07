@@ -5,7 +5,7 @@ import ListadoPacientes from "./components/ListadoPacientes";
 
 function App() {
   // ESTADO - PACIENTES
-  const [pacientes, setPacientes] = useState(undefined);
+  const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({});
 
   // EFECTO - PACIENTES
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(pacientes!==undefined){
+    if(pacientes.length > 0){
       localStorage.setItem('pacientes', JSON.stringify( pacientes ));
     }
   }, [pacientes]);
@@ -29,6 +29,9 @@ function App() {
   const eliminarPaciente = (id) => {
     const pacientesActualizados = pacientes.filter(paciente => paciente.id !== id);
     setPacientes(pacientesActualizados);
+    if (pacientesActualizados.length === 0) {
+      localStorage.setItem('pacientes', JSON.stringify( pacientesActualizados ));
+    }
   }
 
   return (
